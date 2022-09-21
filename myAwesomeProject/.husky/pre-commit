@@ -5,3 +5,5 @@ cd myAwesomeProject
 npm run prettier
 npm run lint
 npm run test
+
+git add .
