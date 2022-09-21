@@ -1,0 +1,20 @@
+{
+  "name": "myawesomeproject",
+  "library": "react-native",
+  "installer": "yarn",
+  "hasTs": false,
+  "layout": "css",
+  "packages": [
+    "Redux",
+    "i18next",
+    "Patch-Package",
+    "Appcenter"
+  ],
+  "components": {
+    "basics": "folder",
+    "elements": "folder",
+    "pages": "folder"
+  },
+  "structure": "BEP (recommended)",
+  "usePropTypes": true
+}
