@@ -11,7 +11,7 @@
     "test": "jest",
     "lint": "eslint src --fix",
     "prettier": "prettier src --write",
-    "prepare": "cd .. && husky install myAwesomeProject/.husky"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@os-team/i18next-react-native-language-detector": "^1.0.16",
