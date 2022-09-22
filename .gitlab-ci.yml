@@ -46,6 +46,9 @@ unit-test-job:
       - coverage/cobertura-coverage.xml
     reports:
       junit: coverage/cobertura-coverage.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
