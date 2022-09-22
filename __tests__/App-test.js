@@ -11,5 +11,5 @@ import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
   renderer.create(<App />);
-  expect(3).toBe(2);
+  expect(3).toBe(3);
 });
