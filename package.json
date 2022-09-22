@@ -50,6 +50,18 @@
     "husky": "^8.0.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/actions/**/*.{js,jsx}"
+    ],
+    "coverageReporters": [
+      "clover",
+      "json",
+      "lcov",
+      "text",
+      "cobertura"
+    ]
   }
 }

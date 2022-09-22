@@ -40,6 +40,12 @@ unit-test-job:
     - yarn test
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+  artifacts:
+    when: always
+    paths:
+      - coverage/cobertura-coverage.xml
+    reports:
+      junit: coverage/cobertura-coverage.xml
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
