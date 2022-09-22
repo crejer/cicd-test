@@ -44,7 +44,9 @@ unit-test-job:
     when: always
     paths:
       - coverage/cobertura-coverage.xml
+      - junit.xml
     reports:
+      junit: junit.xml
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
