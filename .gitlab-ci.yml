@@ -43,9 +43,9 @@ unit-test-job:
   artifacts:
     when: always
     paths:
-      - coverage/clover.xml
+      - coverage/cobertura-coverage.xml
     reports:
-      junit: coverage/clover.xml
+      junit: coverage/cobertura-coverage.xml
 
 lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
