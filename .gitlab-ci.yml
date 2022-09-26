@@ -25,7 +25,7 @@ stages:
 before_script:
  - yarn install --frozen-lockfile
 
-build-job:       # This job runs in the build stage, which runs first.
+build-job-development:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - npm install --global appcenter-cli
@@ -35,14 +35,39 @@ build-job:       # This job runs in the build stage, which runs first.
     - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+      when: manual
+build-job-staging:       # This job runs in the build stage, which runs first.
+  stage: build
+  script:
+    - npm install --global appcenter-cli
+    - echo "$APPCENTER_API_TOKEN"
+    - echo "$APPCENTER_APP_NAME"
+    - echo "$CI_COMMIT_BRANCH"
+    - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+      when: manual
 
-.unit-test-job: 
+build-job-production:       # This job runs in the build stage, which runs first.
+  stage: build
+  script:
+    - npm install --global appcenter-cli
+    - echo "$APPCENTER_API_TOKEN"
+    - echo "$APPCENTER_APP_NAME"
+    - echo "$CI_COMMIT_BRANCH"
+    - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
+  rules:
+    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+      when: manual
+
+unit-test-job: 
     # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - yarn test
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+      when: always
   coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
   artifacts:
     when: always
@@ -56,18 +81,10 @@ build-job:       # This job runs in the build stage, which runs first.
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
 
-.lint-test-job:   # This job also runs in the test stage.
+lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
   script:
     - yarn lint
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-
-.deploy-job:      # This job runs in the deploy stage.
-  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
-  environment: development
-  script:
-    - echo "Deploying application..."
-    - echo "Application successfully deployed."
-  rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+      when: always
