@@ -29,9 +29,9 @@ build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
     - npm install --global appcenter-cli
-    - echo $APPCENTER_API_TOKEN
-    - echo $APPCENTER_APP_NAME
-    - echo $CI_COMMIT_BRANCH
+    - echo "$APPCENTER_API_TOKEN"
+    - echo "$APPCENTER_APP_NAME"
+    - echo "$CI_COMMIT_BRANCH"
     - appcenter login --token $APPCENTER_API_TOKEN
     - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
   rules:
