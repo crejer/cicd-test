@@ -28,6 +28,7 @@ stages:
 build-job-versioning:
   stage: versioning
   script:
+    - echo "https://gitlab-ci-token:${CI_JOB_TOKEN}@https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd.git"
     - git clone "https://gitlab-ci-token:${CI_JOB_TOKEN}@https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd.git"
     - yarn version  --prerelease --preid dev
     
