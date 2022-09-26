@@ -40,13 +40,15 @@ unit-test-job:
     - yarn test
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
   artifacts:
     when: always
     paths:
       - coverage/cobertura-coverage.xml
       - junit.xml
     reports:
-      junit: junit.xml
+      junit:
+        - junit.xml
       coverage_report:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
