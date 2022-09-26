@@ -23,7 +23,7 @@ stages:
   - build
   - deploy
 
-before_script:
+.before_script:
  - yarn install --frozen-lockfile
 build-job-versioning:
   stage: versioning
