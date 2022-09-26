@@ -23,14 +23,12 @@ stages:
   - deploy
 
 before_script:
- - yarn add appcenter-cli
  - yarn install --frozen-lockfile
 
 build-job:       # This job runs in the build stage, which runs first.
   stage: build
   script:
-    - yarn add appcenter-cli
-    - yarn install --frozen-lockfile
+    - npm install --global appcenter-cli
     - appcenter build queue --branch $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
