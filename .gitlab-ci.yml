@@ -27,6 +27,7 @@ before_script:
 
 build-job-development:       # This job runs in the build stage, which runs first.
   stage: build
+  when: manual
   script:
     - npm install --global appcenter-cli
     - echo "$APPCENTER_API_TOKEN"
@@ -35,9 +36,9 @@ build-job-development:       # This job runs in the build stage, which runs firs
     - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-      when: manual
 build-job-staging:       # This job runs in the build stage, which runs first.
   stage: build
+  when: manual
   script:
     - npm install --global appcenter-cli
     - echo "$APPCENTER_API_TOKEN"
@@ -46,10 +47,10 @@ build-job-staging:       # This job runs in the build stage, which runs first.
     - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-      when: manual
 
 build-job-production:       # This job runs in the build stage, which runs first.
   stage: build
+  when: manual
   script:
     - npm install --global appcenter-cli
     - echo "$APPCENTER_API_TOKEN"
@@ -58,7 +59,6 @@ build-job-production:       # This job runs in the build stage, which runs first
     - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
   rules:
     - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-      when: manual
 
 unit-test-job: 
     # This job runs in the test stage.
