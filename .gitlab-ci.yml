@@ -25,11 +25,19 @@ stages:
 
 before_script:
  - yarn install --frozen-lockfile
-
 build-job-versioning:
   stage: versioning
   script:
-    -  yarn version  --prerelease --preid dev
+    - git clone http://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd.git
+    - git checkout development
+    - yarn version  --prerelease --preid dev
+    - git config --global user.name "jeroen37"
+    - git config --global user.email "jeroen.crevits@sweetmustard.be"
+    - git add --all
+    - git commit -m "GitLab Runner Push"
+    - git push http://jeroen37:glpat-Cvwr3_Jv1R8-3LSgUJ5q@gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd.git development
+    - cd ..
+    
 
 .build-job-development:       # This job runs in the build stage, which runs first.
   stage: build
