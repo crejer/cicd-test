@@ -40,7 +40,7 @@ unit-test-job:
     - yarn test
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-  coverage: '/Lines\s*:\s*(\d+.?\d*)%/'
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
   artifacts:
     when: always
     paths:
