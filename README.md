@@ -1,6 +1,8 @@
 # myawesomeproject (react-native)  
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/b16b0190-9a32-4559-9c6e-166b625fc7e8/branches/main/badge)](https://appcenter.ms) 
+![Visual Studio App Center Releases](https://img.shields.io/visual-studio-app-center/releases/version/Sweet-Mustard/CI-CD-Tests/3ef5f37d63b53bf24b6aacbc27d1d239714de89f?label=Appversion%20ios)
+![Visual Studio App Center (Minimum) OS Version](https://img.shields.io/visual-studio-app-center/releases/osver/Sweet-Mustard/CI-CD-Tests/3ef5f37d63b53bf24b6aacbc27d1d239714de89f)
 [![pipeline status](https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd/badges/main/pipeline.svg)](https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd/-/commits/main)
 [![coverage report](https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd/badges/main/coverage.svg)](https://sweetmustard.gitlab.io/internal/research-projects/mobile-ci_cd/)
 
