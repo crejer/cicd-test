@@ -1,6 +1,6 @@
 # myawesomeproject (react-native)  
 
-[![Build status](https://build.appcenter.ms/v0.1/apps/b16b0190-9a32-4559-9c6e-166b625fc7e8/branches/development/badge)](https://appcenter.ms) 
+[![Build status](https://build.appcenter.ms/v0.1/apps/b16b0190-9a32-4559-9c6e-166b625fc7e8/branches/main/badge)](https://appcenter.ms) 
 [![pipeline status](https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd/badges/main/pipeline.svg)](https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd/-/commits/main)
 [![coverage report](https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd/badges/main/coverage.svg)](https://sweetmustard.gitlab.io/internal/research-projects/mobile-ci_cd/)
 
