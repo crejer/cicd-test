@@ -19,62 +19,17 @@
 image: node:18-alpine
 stages: 
   - test
-  - versioning         # List of stages for jobs, and their order of execution
-  - build
-  - deploy
 
-.before_script:
+before_script:
  - yarn install --frozen-lockfile
-build-job-versioning:
-  stage: versioning
-  script:
-    - echo "https://gitlab-ci-token:${CI_JOB_TOKEN}@https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd.git"
-    - git clone "https://gitlab-ci-token:${CI_JOB_TOKEN}@https://gitlab.com/sweetmustard/internal/research-projects/mobile-ci_cd.git"
-    - yarn version  --prerelease --preid dev
-    
 
-.build-job-development:       # This job runs in the build stage, which runs first.
-  stage: build
-  when: manual
-  script:
-    - npm install --global appcenter-cli
-    - echo "$APPCENTER_API_TOKEN"
-    - echo "$APPCENTER_APP_NAME"
-    - echo "$CI_COMMIT_BRANCH"
-    - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
-  rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-.build-job-staging:       # This job runs in the build stage, which runs first.
-  stage: build
-  when: manual
-  script:
-    - npm install --global appcenter-cli
-    - echo "$APPCENTER_API_TOKEN"
-    - echo "$APPCENTER_APP_NAME"
-    - echo "$CI_COMMIT_BRANCH"
-    - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
-  rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-
-.build-job-production:       # This job runs in the build stage, which runs first.
-  stage: build
-  when: manual
-  script:
-    - npm install --global appcenter-cli
-    - echo "$APPCENTER_API_TOKEN"
-    - echo "$APPCENTER_APP_NAME"
-    - echo "$CI_COMMIT_BRANCH"
-    - appcenter build queue -b $CI_COMMIT_BRANCH --token $APPCENTER_API_TOKEN --app $APPCENTER_APP_NAME
-  rules:
-    - if: ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
-
-.unit-test-job: 
+unit-test-job: 
     # This job runs in the test stage.
   stage: test    # It only starts when the job in the build stage completes successfully.
   script:
     - yarn test
   rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development")
       when: always
   coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
   artifacts:
@@ -89,10 +44,10 @@ build-job-versioning:
         coverage_format: cobertura
         path: coverage/cobertura-coverage.xml
 
-.lint-test-job:   # This job also runs in the test stage.
+lint-test-job:   # This job also runs in the test stage.
   stage: test    # It can run at the same time as unit-test-job (in parallel).
   script:
     - yarn lint
   rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "development")
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development")
       when: always
