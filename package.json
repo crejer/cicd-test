@@ -1,6 +1,6 @@
 {
   "name": "myawesomeproject",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "translate": "i18next 'src/**/*.js' 'src/components/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
@@ -11,7 +11,8 @@
     "test": "jest --ci --reporters=default --reporters=jest-junit",
     "lint": "eslint src --fix",
     "prettier": "prettier src --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "set-version": "react-native-version --never-amend --skip-tag --never-increment-build"
   },
   "dependencies": {
     "@os-team/i18next-react-native-language-detector": "^1.0.16",
@@ -29,6 +30,7 @@
     "react": "18.1.0",
     "react-i18next": "^11.18.6",
     "react-native": "0.70.1",
+    "react-native-version": "^4.0.0",
     "react-redux": "^8.0.2",
     "redux": "^4.2.0",
     "redux-logger": "^3.0.6",
