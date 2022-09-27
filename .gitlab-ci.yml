@@ -19,6 +19,7 @@
 image: node:18-alpine
 stages: 
   - test
+  - report-coverage
 
 before_script:
  - yarn install --frozen-lockfile
@@ -35,6 +36,7 @@ unit-test-job:
   artifacts:
     when: always
     paths:
+      - coverage/lcov-report
       - coverage/cobertura-coverage.xml
       - junit.xml
     reports:
@@ -50,4 +52,17 @@ lint-test-job:   # This job also runs in the test stage.
     - yarn lint
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development")
+      when: always
+
+pages:
+  stage: report-coverage
+  dependencies:
+    - unit-test-job
+  script:
+    - mv coverage/lcov-report/ public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"
       when: always
