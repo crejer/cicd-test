@@ -28,11 +28,17 @@ jobs:
         run: yarn lint
 
       - name: Unit & Integration tests
+        id: unittest
         run: yarn test-github
+        continue-on-error: true
 
-      - uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
+      - name: Coverage report
+        uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
         with:
           skip-step: all
           package-manager: yarn
           coverage-file: ./jest-report.json
           base-coverage-file: ./jest-report.json
+      - name: Check on failures
+        if: steps.unittest.outcome != 'success'
+        run: exit 1
