@@ -45,7 +45,7 @@
     "@testing-library/react-native": "^11.1.0",
     "babel-jest": "^26.6.3",
     "eslint": "^7.32.0",
-    "husky": "^8.0.0",
+    "husky": "^8.0.1",
     "i18next-parser": "^6.5.0",
     "jest": "^26.6.3",
     "jest-junit": "^14.0.1",
@@ -54,7 +54,15 @@
   },
   "jest": {
     "preset": "react-native",
-    "collectCoverage": true,
+    "collectCoverage": "true",
+    "coverageThreshold": {
+      "global": {
+        "branches": "70",
+        "functions": "70",
+        "lines": "70",
+        "statements": "70"
+      }
+    },
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/**/actions/**/*.{js,jsx}"
@@ -65,14 +73,6 @@
       "lcov",
       "text",
       "cobertura"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 70,
-        "functions": 70,
-        "lines": 70,
-        "statements": 70
-      }
-    }
+    ]
   }
 }
