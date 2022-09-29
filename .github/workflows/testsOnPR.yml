@@ -28,10 +28,11 @@ jobs:
         run: yarn lint
 
       - name: Unit & Integration tests
-        run: yarn test
+        run: yarn test-github
 
       - uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
         with:
           skip-step: all
           package-manager: yarn
-          coverage-file: './testReport.json'
+          coverage-file: ./jest-report.json
+          base-coverage-file: ./jest-report.json
