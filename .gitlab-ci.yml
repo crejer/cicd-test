@@ -11,7 +11,7 @@ unit-test-job:
   script:
     - yarn test
   rules:
-    - if: ($CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")) || $CI_COMMIT_BRANCH == "master"
+    - if: ($CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main")) || $CI_COMMIT_BRANCH == "main"
       when: always
   coverage: '/All files[^|]*|[^|]*s+([d.]+)/'
   artifacts:
@@ -31,7 +31,7 @@ lint-test-job:
   script:
     - yarn lint
   rules:
-    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main")
       when: always
 pages:
   stage: report-coverage
@@ -43,5 +43,5 @@ pages:
     paths:
       - public/
   rules:
-    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
       when: always
