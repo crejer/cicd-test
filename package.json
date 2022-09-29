@@ -9,7 +9,6 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --ci --reporters=default --reporters=jest-junit",
-    "test-github": "jest --silent --ci --coverage --testLocationInResults --json --outputFile=\"jest-report.json\"",
     "lint": "eslint src --fix",
     "prettier": "prettier src --write",
     "prepare": "husky install",
