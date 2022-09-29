@@ -29,6 +29,10 @@ jobs:
 
       - name: Unit & Integration tests
         run: yarn test
-        
-      - name: Jest coverage report
-        uses: ArtiomTr/jest-coverage-report-action@v2.0.6
+
+      - uses: actions/checkout@v2
+      - uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
+        with:
+          skip-step: all
+          package-manager: yarn
+          coverage-file: "./coverage/coverage-final.json"
