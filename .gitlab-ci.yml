@@ -13,8 +13,8 @@ unit-test-job:
   rules:
     - if: ($CI_PIPELINE_SOURCE == 'merge_request_event' && ($CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master")) || $CI_COMMIT_BRANCH == "master"
       when: always
-   coverage: '/All files[^|]*|[^|]*s+([d.]+)/'
-   artifacts:
+  coverage: '/All files[^|]*|[^|]*s+([d.]+)/'
+  artifacts:
       when: always
       paths:
         - coverage/lcov-report
