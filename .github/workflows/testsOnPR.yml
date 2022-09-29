@@ -3,8 +3,8 @@ name: Pull Request into Master, Develop and Preprod
 on:
   pull_request:
     branches:
-      - "main"
-      - "development"
+      - 'main'
+      - 'development'
 
 jobs:
   #First job
@@ -19,7 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14
-          cache: "yarn"
+          cache: 'yarn'
 
       - name: Install Node modules
         run: yarn install --frozen-lockfile
@@ -34,4 +34,4 @@ jobs:
         with:
           skip-step: all
           package-manager: yarn
-          coverage-file: "./coverage/coverage-final.json"
+          coverage-file: './testReport.json'
