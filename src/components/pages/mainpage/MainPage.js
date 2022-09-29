@@ -6,7 +6,7 @@ const MainPage = props => {
   return (
     <View>
       {props.children}
-      <Text>Testing</Text>
+      <Text>Hello</Text>
     </View>
   );
 };
