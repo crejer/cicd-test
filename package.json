@@ -74,5 +74,13 @@
       "text",
       "cobertura"
     ]
+  },
+
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "classNameTemplate": "{classname} › {title}",
+    "titleTemplate": "{classname} › {title}",
+    "ancestorSeparator": " › ",
+    "suiteNameTemplate": "{filename}"
   }
 }
