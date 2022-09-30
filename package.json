@@ -78,8 +78,8 @@
 
   "jest-junit": {
     "suiteName": "jest tests",
-    "classNameTemplate": "{classname} › {title}",
-    "titleTemplate": "{classname} › {title}",
+    "classNameTemplate": "{classname}",
+    "titleTemplate": "{title}",
     "ancestorSeparator": " › ",
     "suiteNameTemplate": "{filename}"
   }
