@@ -9,16 +9,17 @@ on:
 jobs:
   job-lint-test:
     runs-on: ubuntu-latest
-
+    container:
+      image: node:18-alpine
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: 'yarn'
+      # - name: Use Node.js 14
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 14
+      #     cache: 'yarn'
 
       - name: Install Node modules
         run: yarn install --frozen-lockfile
@@ -28,16 +29,17 @@ jobs:
 
   job-unit-test:
     runs-on: ubuntu-latest
-
+    container:
+      image: node:18-alpine
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          cache: 'yarn'
+      # - name: Use Node.js 14
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 14
+      #     cache: 'yarn'
 
       - name: Install Node modules
         run: yarn install --frozen-lockfile
