@@ -5,3 +5,7 @@ import MainPage from '../MainPage';
 test('Render MainPage', () => {
   render(<MainPage />);
 });
+
+test('Render MainPage with prop', () => {
+  render(<MainPage enabled={true} />);
+});
