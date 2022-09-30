@@ -7,6 +7,7 @@ const MainPage = props => {
     <View>
       {props.children}
       <Text>Hello</Text>
+      {props.enabled && <Text>nope</Text>}
     </View>
   );
 };
