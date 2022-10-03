@@ -2,7 +2,7 @@ image: node:18-alpine
 
 pipelines:
   pull-requests:
-    '{main,development}':
+    '**':
       - parallel:
           - step:
               name: 'Lint Testing'
