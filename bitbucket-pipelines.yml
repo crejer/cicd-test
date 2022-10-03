@@ -13,9 +13,9 @@ pipelines:
               name: 'Unit Testing'
               script:
                 - yarn install --frozen-lockfile
-                - 'JEST_JUNIT_OUTPUT_DIR="test-reports" yarn test'
+                - 'JEST_JUNIT_OUTPUT_DIR="test-reports/junit/" yarn test'
               artifacts:
-                - ./test-reports/**/*.xml
+                - ./test-reports/junit/junit.xml
 
   branches:
     main:
