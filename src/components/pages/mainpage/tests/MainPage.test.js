@@ -7,5 +7,5 @@ test('Render MainPage', () => {
 });
 
 test('Render MainPage with prop', () => {
-  render(<MainPage enabled={true} />);
+  render(<MainPage enabled={false} />);
 });
