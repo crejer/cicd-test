@@ -13,4 +13,12 @@ pipelines:
               name: 'Unit Testing'
               script:
                 - yarn install --frozen-lockfile
-                - 'yarn test'
+                - 'JEST_JUNIT_OUTPUT_DIR="test-reports" yarn test'
+
+  branches:
+    main:
+      - step:
+          name: 'Unit Testing'
+          script:
+            - yarn install --frozen-lockfile
+            - 'yarn test'
