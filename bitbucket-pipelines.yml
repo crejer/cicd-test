@@ -1,19 +1,18 @@
-# This is an example Starter pipeline configuration
-# Use a skeleton to build, test and deploy using manual and parallel steps
-# -----
-# You can specify a custom docker image from Docker Hub as your build environment.
-
-image: atlassian/default-image:3
+image: node:18-alpine
 
 pipelines:
   pull-requests:
     '{main,development}':
+      - step:
+          name: Yarn setup
+          script:
+            - yarn install --frozen-lockfile
       - parallel:
           - step:
-            name: 'Lint Testing'
-            script:
-              - 'yarn lint'
+              name: 'Lint Testing'
+              script:
+                - 'yarn lint'
           - step:
-            name: 'Unit Testing'
-            script:
-              - 'yarn test'
+              name: 'Unit Testing'
+              script:
+                - 'yarn test'
