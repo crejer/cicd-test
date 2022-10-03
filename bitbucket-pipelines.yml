@@ -3,16 +3,14 @@ image: node:18-alpine
 pipelines:
   pull-requests:
     '{main,development}':
-      - step:
-          name: Yarn setup
-          script:
-            - yarn install --frozen-lockfile
       - parallel:
           - step:
               name: 'Lint Testing'
               script:
+                - yarn install --frozen-lockfile
                 - 'yarn lint'
           - step:
               name: 'Unit Testing'
               script:
+                - yarn install --frozen-lockfile
                 - 'yarn test'
