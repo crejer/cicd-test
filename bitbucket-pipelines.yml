@@ -6,7 +6,8 @@ pipelines:
       - step:
           name: 'Check PR Destination branch'
           script:
-            - if [ "$BITBUCKET_PR_DESTINATION_BRANCH" != main || "$BITBUCKET_PR_DESTINATION_BRANCH" != development]; then exit 0 ; fi
+            - echo $BITBUCKET_PR_DESTINATION_BRANCH
+            - if [[ $BITBUCKET_PR_DESTINATION_BRANCH != main && $BITBUCKET_PR_DESTINATION_BRANCH != development]]; then exit 0 ; fi
       - parallel:
           - step:
               name: 'Lint Testing'
