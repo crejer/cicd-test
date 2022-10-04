@@ -4,7 +4,9 @@ pipelines:
   pull-requests:
     '**':
       - step:
-          script: if [ "$BITBUCKET_PR_DESTINATION_BRANCH" != main || "$BITBUCKET_PR_DESTINATION_BRANCH" != development]; then exit 0 ; fi
+          name: 'Check PR Destination branch'
+          script:
+            - if [ "$BITBUCKET_PR_DESTINATION_BRANCH" != main || "$BITBUCKET_PR_DESTINATION_BRANCH" != development]; then exit 0 ; fi
       - parallel:
           - step:
               name: 'Lint Testing'
