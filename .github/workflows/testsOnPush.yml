@@ -39,7 +39,7 @@ jobs:
 
   build-android:
     needs: job-unit-test
-    uses: ./.github/workflows/android-build.yml
+    uses: ./.github/workflows/buildAndroid.yml
     with:
       environment: release
     secrets: inherit
