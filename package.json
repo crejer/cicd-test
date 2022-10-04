@@ -12,7 +12,7 @@
     "lint": "eslint src --fix",
     "prettier": "prettier src --write",
     "prepare": "husky install",
-    "set-version": "react-native-version --never-amend --skip-tag --never-increment-build"
+    "set-version": "react-native-version --never-amend --skip-tag"
   },
   "dependencies": {
     "@os-team/i18next-react-native-language-detector": "^1.0.16",
