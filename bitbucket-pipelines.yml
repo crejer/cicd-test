@@ -1,0 +1,31 @@
+image: node:18-alpine
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: 'Check PR Destination branch'
+          script:
+            - echo $BITBUCKET_PR_DESTINATION_BRANCH
+            - if [[ $BITBUCKET_PR_DESTINATION_BRANCH != main && $BITBUCKET_PR_DESTINATION_BRANCH != development ]]; then exit 1 ; fi
+      - parallel:
+          - step:
+              name: 'Lint Testing'
+              script:
+                - yarn install --frozen-lockfile
+                - 'yarn lint'
+          - step:
+              name: 'Unit Testing'
+              script:
+                - yarn install --frozen-lockfile
+                - 'JEST_JUNIT_OUTPUT_DIR="test-reports/junit/" yarn test'
+              artifacts:
+                - ./test-reports/junit/junit.xml
+
+  branches:
+    main:
+      - step:
+          name: 'Unit Testing'
+          script:
+            - yarn install --frozen-lockfile
+            - 'JEST_JUNIT_OUTPUT_DIR="test-reports" yarn test'
