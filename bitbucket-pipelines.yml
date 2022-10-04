@@ -3,7 +3,8 @@ image: node:18-alpine
 pipelines:
   pull-requests:
     '**':
-      - step: if [ "$BITBUCKET_PR_DESTINATION_BRANCH" != main || "$BITBUCKET_PR_DESTINATION_BRANCH" != development]; then exit 0 ; fi if [ "$BITBUCKET_PR_DESTINATION_BRANCH" != main || "$BITBUCKET_PR_DESTINATION_BRANCH" != development]; then exit 0 ; fi
+      - step:
+          script: if [ "$BITBUCKET_PR_DESTINATION_BRANCH" != main || "$BITBUCKET_PR_DESTINATION_BRANCH" != development]; then exit 0 ; fi
       - parallel:
           - step:
               name: 'Lint Testing'
